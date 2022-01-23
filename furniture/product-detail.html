@@ -1,0 +1,410 @@
+<html>
+<head>
+    
+    <meta charset="UTF-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product</title>
+    
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,900&display=swap" rel="stylesheet">
+
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+   
+
+    
+    
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/grid.css">
+    <link rel="stylesheet" href="./css/app.css">
+
+    <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-database.js"></script>
+    <script src="./js/featured1.js" type="module"></script>
+
+
+
+</head>
+
+<body>
+
+
+    <nav id="nav" class="navbar">
+        <div class="content">
+            <div class="logo">
+                <a href="#">Furniture</a>
+            </div>
+            <ul class="menu-list">
+                <div class="icon cancel-btn">
+                    <i class="fas fa-times"></i>
+                </div>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="product-finding.html" class="aaaa">Products</a></li>
+                <li>
+                    <a href="#">Collection</a>
+                </li>
+                <li><a href="custom-Products.html">Custom Products</a></li>
+                <li><a href="#">About Us</a> </li>
+                <div class="flex3">
+
+                    <button id="logout-btn" onclick="logout()" class="fas fa-sign-out-alt fa-3x"
+                        style="display: none;"></button>
+
+
+                    <button id="login-btn"
+                        onclick="let loginForm = document.querySelector('.login-form-container');loginForm.classList.toggle('active');document.getElementById('usern').style.display = 'none';document.getElementById('register').style.display = 'none';document.getElementById('login').style.display = 'block';document.getElementById('no acc').style.display = 'block';document.getElementById('yes acc').style.display = 'none';document.getElementById('cb').style.display = 'block';document.getElementById('loginh').innerHTML='Sign In';"
+                        class="fas fa-user fa-2x"></button>
+
+
+                    <button id="cart-btn" onclick="window.location.replace('cart.html');"
+                        class="fas fa-shopping-cart fa-2x"></button>
+                </div>
+            </ul>
+            <div class="icon menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+
+        </div>
+    </nav>
+
+
+ <div class="login-form-container">
+
+
+        <button id="close-login-btn"
+            onclick="let loginForm = document.querySelector('.login-form-container');  loginForm.classList.remove('active');"
+            class="fas fa-times"></button>
+
+        <div class=form>
+            <h3 id="loginh">sign in</h3>
+            <div id="usern">
+                <span>username</span>
+                <input id="username" type="text" name="" class="box" placeholder="enter your full name">
+            </div>
+            <span>email</span>
+            <input id="email" type="email" name="" class="box" placeholder="enter your email">
+            <span>password</span>
+            <input id="password" type="password" name="" class="box" placeholder="enter your password">
+
+
+            <div class="checkbox" id="cb">
+                <input type="checkbox" name="" id="remember-me">
+                <label for="remember-me"> remember me</label>
+            </div>
+            <div class="button">
+                <button id="login" value="Sign in" class="btn">Sign In</button>
+
+                <button id="register" value="Register" class="btn">Register</button>
+
+            </div>
+            <div class="button">
+                <button id="no acc"
+                    onclick="document.getElementById('usern').style.display = 'block';document.getElementById('register').style.display = 'block';document.getElementById('login').style.display = 'none';document.getElementById('no acc').style.display = 'none';document.getElementById('yes acc').style.display = 'block';document.getElementById('cb').style.display = 'none';document.getElementById('loginh').innerHTML='Register';"
+                    class="btn">Dont have an Account?</button>
+            </div>
+            <div class="button1">
+                <button id="yes acc"
+                    onclick="document.getElementById('usern').style.display = 'none';document.getElementById('register').style.display = 'none';document.getElementById('login').style.display = 'block';document.getElementById('no acc').style.display = 'block';document.getElementById('yes acc').style.display = 'none';document.getElementById('cb').style.display = 'block';document.getElementById('loginh').innerHTML='Sign In';"
+                    class="btn">Already have an Account?</button>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div style="height:10rem;"></div>
+
+    <div class="row product-row" id="main-row" style="margin-left: 5vw;width: 90vw">
+
+    </div>
+    <section class="featured" id="featured" style="padding-top:8rem;">
+
+        <div class="centeral">
+            <h1 class="heading1"> <span>Related Products</span> </h1>
+        </div>
+        <hr class="rounded">
+        <div class="swiper featured-slider" >
+
+            <div class="swiper-wrapper" id="wrap" style="display: flex;flex-wrap: wrap;justify-content: center;">
+
+
+
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+    <section class="footer" style="padding-top:0rem;">
+
+        <div class="box-container">
+
+            <div class="box">
+                <h3>our locations</h3>
+                <a href="#"> <i class="fas fa-map-marker-alt"></i> india </a>
+                <a href="#"> <i class="fas fa-map-marker-alt"></i> USA </a>
+                <a href="#"> <i class="fas fa-map-marker-alt"></i> russia </a>
+                <a href="#"> <i class="fas fa-map-marker-alt"></i> france </a>
+                <a href="#"> <i class="fas fa-map-marker-alt"></i> japan </a>
+                <a href="#"> <i class="fas fa-map-marker-alt"></i> africa </a>
+            </div>
+
+            <div class="box">
+                <h3>quick links</h3>
+                <a href="#"> <i class="fas fa-arrow-right"></i> home </a>
+                <a href="#"> <i class="fas fa-arrow-right"></i> featured </a>
+                <a href="#"> <i class="fas fa-arrow-right"></i> arrivals </a>
+                <a href="#"> <i class="fas fa-arrow-right"></i> reviews </a>
+                <a href="#"> <i class="fas fa-arrow-right"></i> blogs </a>
+            </div>
+
+
+
+            <div class="box">
+                <h3>contact info</h3>
+                <a href="#"> <i class="fas fa-phone"></i> +123-456-7890 </a>
+                <a href="#"> <i class="fas fa-phone"></i> +111-222-3333 </a>
+                <a href="#"> <i class="fas fa-envelope"></i> ojasj2873@gmail.com </a>
+                <img src="image/worldmap.png" class="map" alt="">
+            </div>
+
+        </div>
+
+        <div class="share">
+            <a href="#" class="fab fa-facebook-f"></a>
+            <a href="#" class="fab fa-twitter"></a>
+            <a href="#" class="fab fa-instagram"></a>
+            <a href="#" class="fab fa-linkedin"></a>
+            <a href="#" class="fab fa-pinterest"></a>
+        </div>
+
+
+
+    </section>
+
+    
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+ 
+
+    <script src="./js/render.js" type="module"></script>
+
+    <script src="js/login.js" type="module"></script>
+
+
+
+    <script>
+        var email = window.sessionStorage.getItem('user');
+
+        if (email == null) {
+            console.log("no user")
+
+        }
+        else {
+            document.getElementById('login-btn').style = "display:none;"
+            document.getElementById('logout-btn').style = "display:block;"
+
+            console.log("user logged in")
+
+        }
+
+
+
+        function logout() {
+
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: 'btn btn-success',
+                    cancelButton: 'btn btn-danger'
+                },
+                buttonsStyling: false
+            })
+
+            swalWithBootstrapButtons.fire({
+                title: 'Are you sure you want to logout!',
+
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes',
+                cancelButtonText: 'No, cancel!',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    swalWithBootstrapButtons.fire(
+
+                        'You have been logged out',
+
+
+                    )
+                    document.getElementById('login-btn').style = "display:block;"
+                    document.getElementById('logout-btn').style = "display:none;"
+
+                    window.sessionStorage.removeItem('user');
+                    location.reload();
+
+
+
+
+                } else if (
+                    /* Read more about handling dismissals below */
+                    result.dismiss === Swal.DismissReason.cancel
+                ) {
+                    swalWithBootstrapButtons.fire(
+                        'Cancelled',
+
+                    )
+                }
+            })
+
+
+        }
+
+        if (window.sessionStorage.getItem('user') == null) {
+
+            if (window.localStorage.getItem('cart') == null) {
+                console.log("yay");
+                window.localStorage.setItem('cart', 0);
+            }
+            else {
+
+                console.log(window.localStorage.cart);
+
+            }
+
+
+        }
+        else {
+
+
+            email = window.sessionStorage.getItem('user');
+
+
+            if (window.localStorage.getItem('cart' + email) == null) {
+
+                window.localStorage.setItem('cart' + email, 0);
+
+            }
+            else {
+
+
+                console.log(window.localStorage.getItem('cart' + email));
+                console.log(email);
+
+
+
+            }
+            console.log(email);
+
+
+
+        }
+
+
+        function lalala(a) {
+            email = window.sessionStorage.getItem('user');
+            if (window.sessionStorage.getItem('user') == null) {
+
+                for (var i = 1; i <= window.localStorage.cart; i++) {
+                    if (a == window.localStorage.getItem('cart' + i)) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Item Already Added',
+
+
+                        })
+                        return;
+                    }
+                }
+                window.localStorage.cart = parseInt(window.localStorage.cart) + 1;
+                window.localStorage.setItem('cart' + window.localStorage.cart, a);
+                console.log(window.localStorage.getItem('cart' + window.localStorage.cart) + ' cart' + window.localStorage.cart);
+                Swal.fire(
+                    'Item Added to Cart!',
+                    'Check cart for more details',
+                    'success'
+                    
+                )
+
+
+
+
+
+            }
+            else {
+                for (var i = 1; i <= window.localStorage.getItem('cart' + email); i++) {
+                    if (a == window.localStorage.getItem('cart' + email + i)) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Item Already Added',
+
+                        })
+                        return;
+                    }
+                }
+                window.localStorage.setItem('cart' + email, parseInt(window.localStorage.getItem('cart' + email)) + 1);
+                window.localStorage.setItem('cart' + email + window.localStorage.getItem('cart' + email), a);
+                console.log(window.localStorage.getItem('cart' + email + window.localStorage.getItem('cart' + email)) + ' cart' + window.localStorage.getItem('cart' + email) + "email");
+                Swal.fire(
+                    'Item Added to Cart!',
+                    'Check cart for more details',
+                    'success'
+                    
+                )
+            }
+        };
+
+    </script>
+
+    <script>
+        const body = document.querySelector("body");
+        const navbar = document.querySelector(".navbar");
+        const menuBtn = document.querySelector(".menu-btn");
+        const cancelBtn = document.querySelector(".cancel-btn");
+        menuBtn.onclick = () => {
+            navbar.classList.add("show");
+            menuBtn.classList.add("hide");
+            body.classList.add("disabled");
+        }
+        cancelBtn.onclick = () => {
+            body.classList.remove("disabled");
+            navbar.classList.remove("show");
+            menuBtn.classList.remove("hide");
+        }
+        window.onscroll = () => {
+            this.scrollY > 20 ? navbar.classList.add("sticky") : navbar.classList.remove("sticky");
+        }
+
+
+        document.getElementById("nav").style.boxShadow = "0px -6px 5px 10px rgba(0,0,0,0.4)";
+        document.getElementById("nav").style.backgroundImage = "linear-gradient(to bottom right, var(--dark1), var(--dark2))";
+
+
+    </script>
+    <script>
+        function main(e) {
+            sessionStorage.setItem("current", parseInt(e));
+            console.log(window.current);
+            window.location.replace("product-detail.html")
+        }
+    </script>
+
+
+
+
+    
+</body>
+
+
+
+
+
+</html>
